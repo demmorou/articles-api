@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-import server from './infra/http/server';
+import server from '~http/server';
 
 const { APP_PORT } = process.env;
 

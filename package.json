@@ -4,7 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "build": "rimraf dist && tsc",
     "dev": "nodemon -e ts,js",
+    "dev:migrate:make": "knex --knexfile src/infra/database/knexfile.ts migrate:make -x ts",
+    "dev:migrate:latest": "knex --knexfile src/infra/database/knexfile.ts migrate:latest",
+    "dev:migrate:rollback": "knex --knexfile src/infra/database/knexfile.ts migrate:rollback",
+    "migrate:latest": "knex --knexfile dist/infra/database/knexfile.js migrate:latest",
     "lint": "eslint src --ext .ts --fix"
   },
   "config": {
@@ -14,7 +19,11 @@
   },
   "dependencies": {
     "dotenv": "^10.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "knex": "^0.95.14",
+    "objection": "^3.0.0",
+    "pg": "^8.7.1",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",

@@ -13,12 +13,19 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "rootDir": "./",
-    "baseUrl": "./src",
+    "rootDir": "src",
+    "baseUrl": ".",
     "outDir": "./dist",
+    "paths": {
+      "~config/*": ["./src/config/*"],
+      "~infra/*": ["./src/infra/*"],
+      "~http/*": ["./src/infra/http/*"],
+      "~modules/*": ["./src/modules/*"]
+    },
     "typeRoots": [
       "./src/@types",
       "./node_modules/@types"
     ]
   },
+  "include": ["./src/"]
 }
