@@ -1,13 +1,16 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import BaseModel from './BaseModel';
+import { Model } from 'objection';
 
-class UserModel extends BaseModel {
-  static tableName = 'users';
+export class UserModel extends Model {
+  static get tableName(): string {
+    return 'users';
+  }
 
-  name: string;
-  email: string;
-  password: string;
-  is_admin: boolean;
+  id!: string;
+  name!: string;
+  email!: string;
+  password!: string;
+  is_admin!: boolean;
 }
 
 export default UserModel;

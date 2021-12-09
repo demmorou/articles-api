@@ -2,6 +2,8 @@ import express from 'express';
 
 import { Logger } from '~infra/tools/log/types';
 
+import IUsersRepository from '~modules/accounts/repositories/IUsersRepository';
+
 import { config } from '../config';
 import { setupContainer } from '../container';
 import loggerMiddleware from './middlewares/LoggerMiddleware';
@@ -24,7 +26,13 @@ const server = async (): Promise<void> => {
   // app.use(errors());
   // app.use(interceptorErrors);
 
-  app.get('/', (req, res) => res.send({ ok: true }));
+  app.get('/', async (req, res) => {
+    const ur = req.container.resolve<IUsersRepository>('usersRepository');
+
+    await ur.create({ email: 'deusimar.comx', name: 'eu eu', password: '123' });
+
+    return res.send({ email: 'deusimar.comc', name: 'eu eu', password: '123' });
+  });
 
   app.listen(APP_PORT, () => {
     logger.info(`Listening on port ${APP_PORT}`);
