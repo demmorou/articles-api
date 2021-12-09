@@ -4,7 +4,7 @@ import User from '../domain/User';
 import UserDTO from '../domain/UserDTO';
 
 class UserMapper {
-  static toDomain(raw: UserModel): User {
+  static toDomain(raw: UserModel): UserDTO {
     return {
       id: raw.id,
       name: raw.name,
@@ -14,7 +14,7 @@ class UserMapper {
     };
   }
 
-  static toPersistence(user: User): UserDTO {
+  static toPersistence(user: UserDTO): User {
     return {
       id: user.id,
       name: user.name,

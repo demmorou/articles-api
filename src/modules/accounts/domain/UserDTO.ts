@@ -3,7 +3,7 @@ type UserDTO = {
   name: string;
   email: string;
   password: string;
-  is_admin: boolean;
+  isAdmin?: boolean;
 };
 
 export default UserDTO;
