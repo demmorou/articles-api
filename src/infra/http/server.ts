@@ -1,13 +1,14 @@
+import 'express-async-errors';
 import express from 'express';
 
 import { Logger } from '~infra/tools/log/types';
 
-import IUsersRepository from '~modules/accounts/repositories/IUsersRepository';
-
 import { config } from '../config';
 import { setupContainer } from '../container';
+import interceptorErrors from './interceptors/interceptorErrors';
 import loggerMiddleware from './middlewares/LoggerMiddleware';
 import requestScope from './middlewares/RequestScope';
+import routes from './routes';
 
 const app = express();
 
@@ -21,18 +22,10 @@ const server = async (): Promise<void> => {
   app.use(loggerMiddleware);
   app.use(express.json());
 
-  // app.use(routes);
+  app.use('/api', routes);
 
   // app.use(errors());
-  // app.use(interceptorErrors);
-
-  app.get('/', async (req, res) => {
-    const ur = req.container.resolve<IUsersRepository>('usersRepository');
-
-    await ur.create({ email: 'deusimar.comx', name: 'eu eu', password: '123' });
-
-    return res.send({ email: 'deusimar.comc', name: 'eu eu', password: '123' });
-  });
+  app.use(interceptorErrors);
 
   app.listen(APP_PORT, () => {
     logger.info(`Listening on port ${APP_PORT}`);
