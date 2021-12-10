@@ -1,18 +1,32 @@
-import knex from 'knex';
+import { AppContainer } from '~infra/container';
+import { DB } from '~infra/database/models';
 
-import knexfile from '~infra/database/knexfile';
-import { UserModel } from '~infra/database/models/UserModel';
+import UserMapper from '~modules/accounts/mappers/UserMapper';
 
 import UserDTO from '../../domain/UserDTO';
 import IUsersRepository from '../IUsersRepository';
 
 class UsersRepository implements IUsersRepository {
-  constructor() {
-    UserModel.knex(knex(knexfile));
+  private db: DB;
+
+  constructor(params: AppContainer) {
+    this.db = params.db;
   }
 
   public async create({ email, name, password }: UserDTO): Promise<void> {
-    await UserModel.query().insert({ email, name, password });
+    const userToPersistence = UserMapper.toPersistence({
+      email,
+      name,
+      password,
+    });
+
+    await this.db.models.user.query().insert(userToPersistence);
+  }
+
+  public async findByEmail(email: string): Promise<UserDTO> {
+    const user = await this.db.models.user.query().findOne('email', email);
+
+    return UserMapper.toDomain(user);
   }
 }
 
