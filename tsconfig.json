@@ -20,7 +20,10 @@
       "~config/*": ["./src/config/*"],
       "~infra/*": ["./src/infra/*"],
       "~http/*": ["./src/infra/http/*"],
-      "~modules/*": ["./src/modules/*"]
+      "~modules/*": ["./src/modules/*"],
+      "~core/*": ["./src/core/*"],
+      "~controllers/*": ["./src/adapters/controllers/*"],
+      "~handlers/*": ["./src/adapters/handlers/*"]
     },
     "typeRoots": [
       "./src/@types",
