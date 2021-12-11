@@ -17,6 +17,7 @@ import { Logger } from '~infra/tools/log/types';
 import HashHandler from '~handlers/HashHandler';
 import IUsersRepository from '~modules/accounts/repositories/IUsersRepository';
 import RegisterUser from '~modules/accounts/useCases/registerUser/RegisterUser';
+import IAuthorsRepository from '~modules/authors/repositories/IAuthorsRepository';
 
 import knexfile from '../database/knexfile';
 import { DB, getModels } from '../database/models';
@@ -30,6 +31,7 @@ type AppContainer = {
   registerUser: RegisterUser;
 
   usersRepository: IUsersRepository;
+  authorsRepository: IAuthorsRepository;
 
   hashHandler: HashHandler;
 
