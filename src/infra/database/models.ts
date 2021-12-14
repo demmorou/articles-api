@@ -6,12 +6,14 @@ import Knex from 'knex';
 import path from 'path';
 
 import knexfile from './knexfile';
+import ArticleModel from './models/ArticleModel';
 import AuthorModel from './models/AuthorModel';
 import UserModel from './models/UserModel';
 
 type ModelMap = {
   user: typeof UserModel;
   author: typeof AuthorModel;
+  article: typeof ArticleModel;
 };
 
 export type DB = {

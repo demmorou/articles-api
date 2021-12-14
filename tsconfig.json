@@ -13,17 +13,17 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "rootDir": "src",
-    "baseUrl": ".",
+    "rootDir": "./",
+    "baseUrl": "./src",
     "outDir": "./dist",
     "paths": {
-      "~config/*": ["./src/config/*"],
-      "~infra/*": ["./src/infra/*"],
-      "~http/*": ["./src/infra/http/*"],
-      "~modules/*": ["./src/modules/*"],
-      "~core/*": ["./src/core/*"],
-      "~controllers/*": ["./src/adapters/controllers/*"],
-      "~handlers/*": ["./src/adapters/handlers/*"]
+      "~config/*": ["config/*"],
+      "~infra/*": ["infra/*"],
+      "~http/*": ["infra/http/*"],
+      "~modules/*": ["modules/*"],
+      "~core/*": ["core/*"],
+      "~controllers/*": ["adapters/controllers/*"],
+      "~handlers/*": ["adapters/handlers/*"]
     },
     "typeRoots": [
       "./src/@types",

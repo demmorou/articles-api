@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "rimraf dist && babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "dev": "nodemon -e ts,js",
+    "start": "node dist/app.js",
     "dev:migrate:make": "knex --knexfile src/infra/database/knexfile.ts migrate:make -x ts",
     "dev:migrate:latest": "knex --knexfile src/infra/database/knexfile.ts migrate:latest",
     "dev:migrate:rollback": "knex --knexfile src/infra/database/knexfile.ts migrate:rollback",
@@ -34,6 +35,13 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/node": "^7.10.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-proposal-decorators": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@babel/preset-typescript": "^7.10.1",
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
     "@types/bcrypt": "^5.0.0",
@@ -42,6 +50,8 @@
     "@types/uuid": "^8.3.3",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-transform-typescript-metadata": "^0.3.0",
     "commitizen": "^4.2.4",
     "eslint": "^7.26.0",
     "eslint-config-airbnb-base": "^14.2.1",

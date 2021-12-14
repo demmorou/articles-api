@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+  postgres_db_api:
+    container_name: postgres_db_api
+    image: postgres
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+        - api-network
+
+  api:
+    build: .
+    container_name: challenge-api
+    restart: always
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    depends_on:
+      - postgres_db_api
+    networks:
+      - api-network
+    links:
+      - postgres_db_api
+
+volumes:
+  postgres:
+
+networks:
+  api-network:
+    driver: bridge
