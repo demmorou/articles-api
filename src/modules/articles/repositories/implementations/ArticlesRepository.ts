@@ -50,6 +50,10 @@ class ArticlesRepository implements IArticlesRepository {
 
     return ArticleMapper.toDomain(article);
   }
+
+  public async delete(id: string): Promise<void> {
+    await this.db.models.article.query().delete().where({ id });
+  }
 }
 
 export default ArticlesRepository;
