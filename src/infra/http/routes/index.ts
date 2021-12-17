@@ -1,8 +1,7 @@
 import { Router } from 'express';
 
 import accountsRoutes from './accounts.routes';
-import articlesRoutes from './articles';
-import authorsRoutes from './authors.routes';
+import adminRoutes from './admin.routes';
 import sessionsRoutes from './sessions.routes';
 
 const routes = Router();
@@ -10,7 +9,6 @@ const routes = Router();
 routes.use('/login', sessionsRoutes);
 routes.use('/sign-up', accountsRoutes);
 
-routes.use('/admin/authors', authorsRoutes);
-routes.use('/admin/articles', articlesRoutes);
+routes.use('/admin', adminRoutes);
 
 export default routes;

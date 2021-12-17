@@ -15,6 +15,7 @@ import AppLogger from '~infra/tools/log/Logger';
 import { Logger } from '~infra/tools/log/types';
 
 import HashHandler from '~handlers/HashHandler';
+import JwtHandler from '~handlers/JwtHandler';
 import IUsersRepository from '~modules/accounts/repositories/IUsersRepository';
 import RegisterUser from '~modules/accounts/useCases/registerUser/RegisterUser';
 import IArticlesRepository from '~modules/articles/repositories/IArticlesRepository';
@@ -36,6 +37,7 @@ type AppContainer = {
   articlesRepository: IArticlesRepository;
 
   hashHandler: HashHandler;
+  jwtHandler: JwtHandler;
 
   db: DB;
 };

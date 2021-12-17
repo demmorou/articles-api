@@ -28,6 +28,12 @@ class UsersRepository implements IUsersRepository {
 
     return UserMapper.toDomain(user);
   }
+
+  public async findById(id: string): Promise<UserDTO> {
+    const user = await this.db.models.user.query().findById(id);
+
+    return UserMapper.toDomain(user);
+  }
 }
 
 export default UsersRepository;

@@ -16,6 +16,7 @@ class AuthenticateUser {
   constructor(params: AppContainer) {
     this.usersRepository = params.usersRepository;
     this.hashHandler = params.hashHandler;
+    this.jwtHandler = params.jwtHandler;
   }
 
   public async execute({
