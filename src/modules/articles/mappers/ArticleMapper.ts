@@ -8,9 +8,11 @@ import ArticleDTO from '../domain/ArticleDTO';
 
 class ArticleMapper {
   static toDomain(raw: ArticleModel): ArticleDTO {
+    if (!raw) return null;
+
     let author: Author = null;
 
-    if (raw.author) {
+    if (raw?.author) {
       author = AuthorMapper.toDomain(raw.author);
       delete author.id;
     }
