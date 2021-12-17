@@ -16,12 +16,12 @@ See the Insomnia collection
 
 Firstly, clone this repository:
 ```terminal
-$ git clone
+deusimar@deusimar $ git clone
 ```
 
 ### Install dependencies
 ```terminal
-$ yarn install
+deusimar@deusimar $ yarn install
 ```
 
 ### Configuration
@@ -29,17 +29,17 @@ $ yarn install
 Copy the basic `.env.example` to new file `.env` and write your preferences of connections database.
 
 ```terminal
-$ cp .env.example .env
+deusimar@deusimar $ cp .env.example .env
 ```
 
 ### Run migrations
 ```terminal
-$ yarn dev:migrate:latest
+deusimar@deusimar $ yarn dev:migrate:latest
 ```
 
 ### Start dev server
 ```terminal
-$ yarn dev
+deusimar@deusimar $ yarn dev
 ```
 
 ## Production build
@@ -47,16 +47,30 @@ Run the following commands, same sequence:
 
 Up containers
 ```terminal
-$ docker-compose up --build -d
+deusimar@deusimar $ docker-compose up --build -d
 ```
 
 Create extension on database to add uuid autogenerate. Replace the variable with our database connections settings.
 ```terminal
-$ docker exec -it postgres_db_api psql "host=YOUR_DATABASE_HOST port=YOUR_DATABASE_PORT dbname=YOUR_DATABASE_NAME user=YOUR_DATABASE_USER password=YOUR_DATABASE_PASSWORD" -c 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
+deusimar@deusimar $ docker exec -it postgres_db_api psql "host=YOUR_DATABASE_HOST port=YOUR_DATABASE_PORT dbname=YOUR_DATABASE_NAME user=YOUR_DATABASE_USER password=YOUR_DATABASE_PASSWORD" -c 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
 ```
 
 Running migrations on productions build.
 ```terminal
-$ docker-compose run api /bin/sh -c "yarn migrate:latest"
+deusimar@deusimar $ docker-compose run api /bin/sh -c "yarn migrate:latest"
 ```
 
+## How to commit
+After done your changes, run the following commands to commit:
+
+```terminal
+deusimar@deusimar $ git add .
+```
+
+With your changes in staged area, run:
+
+```terminal
+deusimar@deusimar $ git commit
+```
+
+The `husky` will run customized hooks of git to check the lint of the your changes. The `commitlint` will verify if your commit message respect the commit lint guide.
