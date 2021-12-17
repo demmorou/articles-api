@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import ensureAdminAuthenticated from '../middlewares/ensureAdminAuthenticated';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
-import articlesRoutes from './articles';
+import articlesRoutes from './articles.routes';
 import authorsRoutes from './authors.routes';
 
 const adminRoutes = Router();

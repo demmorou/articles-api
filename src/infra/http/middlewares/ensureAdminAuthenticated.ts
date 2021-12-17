@@ -24,6 +24,8 @@ async function ensureAdminAuthenticated(
     );
   }
 
+  request.user.isAdmin = user.isAdmin;
+
   next();
 }
 

@@ -26,6 +26,15 @@ class ArticlesRepository implements IArticlesRepository {
 
     return articles.map((article) => ArticleMapper.toDomain(article));
   }
+
+  public async findById(id: string): Promise<ArticleDTO> {
+    const article = await this.db.models.article
+      .query()
+      .findById(id)
+      .withGraphFetched({ author: true });
+
+    return ArticleMapper.toDomain(article);
+  }
 }
 
 export default ArticlesRepository;
