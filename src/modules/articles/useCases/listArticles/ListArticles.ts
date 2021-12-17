@@ -1,7 +1,8 @@
 import { AppContainer } from '~infra/container';
 
-import ArticleDTO from '~modules/articles/domain/ArticleDTO';
 import IArticlesRepository from '~modules/articles/repositories/IArticlesRepository';
+
+import { ListArticlesInput, ListArticlesOutput } from './types';
 
 class ListArticles {
   private articlesRepository: IArticlesRepository;
@@ -10,8 +11,20 @@ class ListArticles {
     this.articlesRepository = params.articlesRepository;
   }
 
-  public async execute(): Promise<ArticleDTO[]> {
-    const articles = await this.articlesRepository.find();
+  public async execute({
+    category,
+    loggedUser,
+  }: ListArticlesInput): Promise<ListArticlesOutput> {
+    const articles = await this.articlesRepository.find(category);
+
+    if (!loggedUser) {
+      return articles.map(({ author, category, title, summary }) => ({
+        author,
+        category,
+        title,
+        summary,
+      }));
+    }
 
     return articles;
   }

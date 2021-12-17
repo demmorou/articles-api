@@ -13,11 +13,11 @@ class ShowArticle {
 
   public async execute({
     id,
-    isAdmin,
+    loggedUser,
   }: ShowArticleInput): Promise<ShowArticleOutput> {
     const article = await this.articlesRepository.findById(id);
 
-    if (!isAdmin) delete article.body;
+    if (!loggedUser) delete article.body;
 
     return article;
   }

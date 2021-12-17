@@ -8,11 +8,11 @@ export async function showArticleController(
   response: Response,
 ): Promise<Response> {
   const { id } = request.params;
-  const { isAdmin } = request.user;
+  const loggedUser = !!request.user?.id;
 
   const showArticle = request.container.resolve<ShowArticle>('showArticle');
 
-  const article = await showArticle.execute({ id, isAdmin });
+  const article = await showArticle.execute({ id, loggedUser });
 
   return response.status(HTTP_STATUS.OK).json(article);
 }

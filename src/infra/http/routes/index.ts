@@ -1,13 +1,11 @@
 import { Router } from 'express';
 
-import accountsRoutes from './accounts.routes';
 import adminRoutes from './admin.routes';
-import sessionsRoutes from './sessions.routes';
+import publicRoutes from './public.routes';
 
 const routes = Router();
 
-routes.use('/login', sessionsRoutes);
-routes.use('/sign-up', accountsRoutes);
+routes.use(publicRoutes);
 
 routes.use('/admin', adminRoutes);
 

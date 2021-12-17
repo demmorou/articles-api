@@ -7,7 +7,6 @@ declare global {
       container: AwilixContainer;
       user: {
         id: string;
-        isAdmin?: boolean;
       };
     }
 

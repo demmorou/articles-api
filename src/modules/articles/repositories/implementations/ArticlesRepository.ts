@@ -1,3 +1,5 @@
+import { raw } from 'objection';
+
 import { AppContainer } from '~infra/container';
 import { DB } from '~infra/database/models';
 
@@ -19,10 +21,23 @@ class ArticlesRepository implements IArticlesRepository {
     await this.db.models.article.query().insert(articleToPersistence);
   }
 
-  public async find(): Promise<ArticleDTO[]> {
-    const articles = await this.db.models.article.query().withGraphFetched({
-      author: true,
-    });
+  public async find(category: string): Promise<ArticleDTO[]> {
+    let articles: any[] = [];
+
+    if (!category) {
+      articles = await this.db.models.article.query().withGraphFetched({
+        author: true,
+      });
+
+      return articles.map((article) => ArticleMapper.toDomain(article));
+    }
+
+    articles = await this.db.models.article
+      .query()
+      .withGraphFetched({
+        author: true,
+      })
+      .where({ category });
 
     return articles.map((article) => ArticleMapper.toDomain(article));
   }

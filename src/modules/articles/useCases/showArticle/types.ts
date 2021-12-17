@@ -1,7 +1,7 @@
 import ArticleDTO from '~modules/articles/domain/ArticleDTO';
 
 export type ShowArticleInput = {
-  isAdmin?: boolean;
+  loggedUser?: boolean;
   id: string;
 };
 
