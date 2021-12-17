@@ -15,12 +15,12 @@ See the Insomnia collection
 ## Development environment
 
 Firstly, clone this repository:
-```terminal
+```bash
 deusimar@deusimar $ git clone
 ```
 
 ### Install dependencies
-```terminal
+```bash
 deusimar@deusimar $ yarn install
 ```
 
@@ -28,17 +28,17 @@ deusimar@deusimar $ yarn install
 
 Copy the basic `.env.example` to new file `.env` and write your preferences of connections database.
 
-```terminal
+```bash
 deusimar@deusimar $ cp .env.example .env
 ```
 
 ### Run migrations
-```terminal
+```bash
 deusimar@deusimar $ yarn dev:migrate:latest
 ```
 
 ### Start dev server
-```terminal
+```bash
 deusimar@deusimar $ yarn dev
 ```
 
@@ -46,30 +46,30 @@ deusimar@deusimar $ yarn dev
 Run the following commands, same sequence:
 
 Up containers
-```terminal
+```bash
 deusimar@deusimar $ docker-compose up --build -d
 ```
 
 Create extension on database to add uuid autogenerate. Replace the variable with our database connections settings.
-```terminal
+```bash
 deusimar@deusimar $ docker exec -it postgres_db_api psql "host=YOUR_DATABASE_HOST port=YOUR_DATABASE_PORT dbname=YOUR_DATABASE_NAME user=YOUR_DATABASE_USER password=YOUR_DATABASE_PASSWORD" -c 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
 ```
 
 Running migrations on productions build.
-```terminal
+```bash
 deusimar@deusimar $ docker-compose run api /bin/sh -c "yarn migrate:latest"
 ```
 
 ## How to commit
 After done your changes, run the following commands to commit:
 
-```terminal
+```bash
 deusimar@deusimar $ git add .
 ```
 
 With your changes in staged area, run:
 
-```terminal
+```bash
 deusimar@deusimar $ git commit
 ```
 
